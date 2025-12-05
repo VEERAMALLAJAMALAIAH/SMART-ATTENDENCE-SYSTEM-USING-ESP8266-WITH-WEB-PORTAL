@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Faculty Registration — Veeramalla Attendance Portal</title>
+<style>
+  :root{
+    --bg1:#0f1724;
+    --bg2:#0f3b59;
+    --accent:#ffb86b;
+    --glass: rgba(255,255,255,0.06);
+    --glass-2: rgba(255,255,255,0.03);
+  }
+
+  *{box-sizing:border-box;font-family:Inter,"Segoe UI",Roboto,Arial,sans-serif;}
+
+  html,body{
+    height:100%;
+    margin:0;
+    background:linear-gradient(135deg,var(--bg1),var(--bg2));
+    color:#eef2ff;
+  }
+
+  .wrap{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px 20px;
+  }
+
+  .card{
+    width:100%;
+    max-width:960px;
+    background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 20px 50px rgba(2,6,23,0.65),0 10px 30px rgba(2,6,23,0.4) inset;
+    border:1px solid rgba(255,255,255,0.04);
+    transition:transform .25s ease;
+  }
+
+  .card:hover{
+    transform:perspective(900px) rotateX(1deg) rotateY(-1deg) translateY(-6px);
+  }
+
+  .header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:20px;
+  }
+
+  .logo{
+    width:64px;
+    height:64px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#ffd9b3,#ffb86b);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#111;
+    font-weight:800;
+    font-size:24px;
+    box-shadow:0 6px 18px rgba(255,184,107,0.18);
+  }
+
+  h1{margin:0;font-size:20px;}
+  p.lead{margin:4px 0 0;color:rgba(238,242,255,0.8);font-size:13px;}
+
+  form{margin-top:10px;}
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+  }
+
+  .full{grid-column:1 / -1;}
+  label{
+    display:block;
+    font-size:13px;
+    margin-bottom:6px;
+    color:rgba(255,255,255,0.9);
+    font-weight:600;
+  }
+
+  input[type="text"],input[type="email"],input[type="password"],select{
+    width:100%;
+    padding:10px 12px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,0.06);
+    background:var(--glass);
+    color:#fff;
+    outline:none;
+    font-size:14px;
+    transition:transform .12s,box-shadow .12s;
+    appearance:none;
+  }
+
+  input:focus,select:focus{
+    transform:translateY(-2px);
+    box-shadow:0 6px 18px rgba(0,0,0,0.45);
+  }
+
+  /* ✅ Fix white dropdown background */
+  select {
+    background-color: rgba(255,255,255,0.05);
+    color: #fff;
+  }
+  select option {
+    background-color: #0f1724;
+    color: #fff;
+  }
+
+  .file-wrap{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px;
+    border-radius:10px;
+    background:var(--glass-2);
+    border:1px dashed rgba(255,255,255,0.04);
+    color:#fff;
+  }
+
+  .file-wrap input[type=file]{background:transparent;color:#fff;border:0;}
+
+  .hint{font-size:12px;color:rgba(238,242,255,0.7);margin-top:8px;}
+
+  .actions{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-top:16px;
+  }
+
+  button.primary{
+    background:linear-gradient(90deg,var(--accent),#ffecb8);
+    color:#111;
+    border:0;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(255,184,107,0.14),0 2px 6px rgba(0,0,0,0.25);
+    transition:transform .12s;
+  }
+
+  button.primary:hover{transform:translateY(-3px);}
+  a.link{color:#ffe7c6;text-decoration:underline;font-size:13px;}
+
+  @media (max-width:800px){.grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="header">
+        <div class="logo">VA</div>
+        <div>
+          <h1>Faculty Registration</h1>
+          <p class="lead">Register a new faculty member — upload photo and password.</p>
+        </div>
+      </div>
+
+      <form action="faculty_register.php" method="post" enctype="multipart/form-data">
+        <div class="grid">
+          <div>
+            <label for="name">Faculty Name</label>
+            <input id="name" name="name" type="text" required placeholder="Dr. John Doe">
+          </div>
+
+          <div>
+            <label for="regd_no">Faculty Regd. No (Unique)</label>
+            <input id="regd_no" name="regd_no" type="text" required placeholder="FAC1001">
+          </div>
+
+          <div>
+            <label for="department">Department</label>
+            <select id="department" name="department" required>
+              <option value="">-- Select Department --</option>
+              <option value="Aerospace Engineering">Aerospace Engineering</option>
+              <option value="Artificial Intelligence & Data Science">Artificial Intelligence & Data Science</option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+              <option value="Computer Science & Engineering (AI & ML)">Computer Science & Engineering (AI & ML)</option>
+              <option value="Electrical & Electronics Engineering">Electrical & Electronics Engineering</option>
+              <option value="Electronics & Communication Engineering">Electronics & Communication Engineering</option>
+              <option value="Information Technology">Information Technology</option>
+              <option value="Mechanical Engineering">Mechanical Engineering</option>
+              <option value="Master of Business Administration (MBA)">Master of Business Administration (MBA)</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="designation">Designation</label>
+            <input id="designation" name="designation" type="text" placeholder="Assistant Professor">
+          </div>
+
+          <div>
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="text" placeholder="9876543210">
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="faculty@college.edu">
+          </div>
+
+          <div>
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="username">
+          </div>
+
+          <div>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" required placeholder="Create a password">
+          </div>
+
+          <div class="full">
+            <label for="photo">Upload Photo</label>
+            <div class="file-wrap">
+              <input id="photo" name="photo" type="file" accept="image/*">
+              <span>Choose profile photo (max 2MB)</span>
+            </div>
+            <div class="hint">Tip: Square or portrait photos look best.</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="primary">Register Faculty</button>
+          <div style="margin-left:auto;">
+            <a class="link" href="faculty_login.html">Already have an account? Login</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
